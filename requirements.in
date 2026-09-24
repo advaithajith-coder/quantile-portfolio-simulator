@@ -1,0 +1,11 @@
+# Direct dependencies. Regenerate the pinned lock file with:
+#   uv pip compile requirements.in -o requirements.txt --python-version 3.12 --universal
+streamlit==1.38.0
+pandas>=2.2,<3
+numpy>=2.0,<2.3
+scipy==1.14.1
+plotly==5.24.1
+yfinance>=1.7
+requests>=2.31
+lxml>=5.3
+python-dateutil>=2.9

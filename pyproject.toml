@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quantile-portfolio"
+version = "2.0.0"
+description = "Monte Carlo portfolio risk simulator with mean-variance optimisation and a Streamlit dashboard."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10,<3.13"
+authors = [{ name = "advaithajith-coder" }]
+keywords = ["monte-carlo", "portfolio", "risk", "value-at-risk", "streamlit", "finance"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Education",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+dependencies = [
+    "streamlit==1.38.0",
+    "pandas>=2.2,<3",
+    "numpy>=2.0,<2.3",
+    "scipy==1.14.1",
+    "plotly==5.24.1",
+    "yfinance>=1.7",
+    "requests>=2.31",
+    "lxml>=5.3",
+    "python-dateutil>=2.9",
+]
+
+[tool.setuptools.packages.find]
+include = ["portfolio_management*"]
