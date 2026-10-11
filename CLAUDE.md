@@ -13,10 +13,10 @@ Education only, not financial advice.
 ## Commands (Python 3.10–3.12)
 
 ```bash
-python -m venv .venv && .venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-streamlit run app.py                 # http://localhost:8501
-python -m unittest -v                # tests (unittest, not pytest)
+python -m venv .venv
+.venv/Scripts/python -m pip install -r requirements.txt     # (macOS/Linux: .venv/bin/python)
+.venv/Scripts/python -m streamlit run app.py                # http://localhost:8501
+.venv/Scripts/python -m unittest -v                         # tests (unittest, not pytest)
 ```
 
 - `tests/test_data_loader.py` downloads real prices (yfinance) and needs internet; if offline, run the others:
@@ -42,7 +42,8 @@ portfolio_management/
 ## Rules that matter
 
 - Keep model logic (data/portfolio/optimizer/simulation/helpers) free of Streamlit calls so it stays unit-testable; UI lives in `app.py` and `utils/`.
-- Weights are long-only and must sum to 1. Simulation is buy-and-hold over 252 trading days per year.
+- Weights are long-only (bounds 0–1) and must sum to 1; the app rejects manual weights that don't.
+- Simulation is buy-and-hold; the horizon is user-set in trading days (default 252 ≈ one year), and annualisation uses 252.
 - The S&P 500 list is scraped from Wikipedia with a browser User-Agent and falls back to a built-in list; keep that fallback working.
 - Streamlit is pinned to 1.38.0; check API compatibility before using newer Streamlit features.
 - Keep the README's "Limitations" honest if you change the model (e.g. if you add fat tails or rebalancing).
