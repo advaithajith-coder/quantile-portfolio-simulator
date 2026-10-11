@@ -19,6 +19,7 @@ python -m venv .venv
 .venv/Scripts/python -m unittest -v                         # tests (unittest, not pytest)
 ```
 
+- CI (`.github/workflows/ci.yml`) runs the offline tests below on every PR.
 - `tests/test_data_loader.py` downloads real prices (yfinance) and needs internet; if offline, run the others:
   `python -m unittest tests.test_helpers tests.test_optimizer tests.test_portfolio tests.test_simulation -v`.
 - Dependencies: edit `requirements.in`, then

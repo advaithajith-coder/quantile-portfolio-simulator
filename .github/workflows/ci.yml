@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      # test_data_loader downloads live prices from Yahoo Finance, which is unreliable in CI.
+      - name: Unit tests (offline)
+        run: python -m unittest tests.test_helpers tests.test_optimizer tests.test_portfolio tests.test_simulation -v
